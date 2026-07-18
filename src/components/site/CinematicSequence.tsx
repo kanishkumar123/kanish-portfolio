@@ -24,25 +24,32 @@ interface CinematicSequenceProps {
  * - If the exact frame — or its neighbor — hasn't finished loading yet
  *   (lazy phase), we fall back to the nearest already-loaded frame instead
  *   of leaving the canvas blank.
- * - Sizing accounts for devicePixelRatio (capped at 2x to avoid megapixel
- *   canvases on very high-DPI displays) so the sequence stays sharp on
- *   Retina screens without over-spending on fill-rate.
+ * - The render buffer (canvas.width/height) is capped at MAX_RENDER_WIDTH
+ *   regardless of the element's on-screen CSS size or devicePixelRatio.
+ *   drawImage() cost scales with pixel count, not CSS size — on a 2K/4K
+ *   display at 100% OS scaling, devicePixelRatio is just 1, so a naive
+ *   "match clientWidth" canvas can be pushing 1.8x+ more pixels through
+ *   drawImage() every scroll tick than on a 1080p screen, which reads as
+ *   stutter. Capping the buffer and letting the browser upscale the
+ *   bitmap to the CSS box (same mechanism as `object-fit: cover` on an
+ *   <img>) keeps draw cost bounded and predictable on any screen size.
  */
+const MAX_RENDER_WIDTH = 1920;
+
 export const CinematicSequence = forwardRef<CinematicSequenceHandle, CinematicSequenceProps>(
   ({ imagesRef, frameCount, className }, ref) => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const ctxRef = useRef<CanvasRenderingContext2D | null>(null);
-    const dprRef = useRef(1);
-    const sizeRef = useRef({ width: 0, height: 0 });
+    // Holds the actual render-buffer pixel size (post-cap), not the CSS size.
+    const bufferRef = useRef({ width: 0, height: 0 });
     const rafRef = useRef<number | undefined>(undefined);
     const pendingProgressRef = useRef(0);
 
     const drawImageCover = (img: HTMLImageElement, alpha: number) => {
       const ctx = ctxRef.current;
       if (!ctx) return;
-      const dpr = dprRef.current;
-      const cw = sizeRef.current.width * dpr;
-      const ch = sizeRef.current.height * dpr;
+      const cw = bufferRef.current.width;
+      const ch = bufferRef.current.height;
       const imageRatio = img.naturalWidth / img.naturalHeight;
       const canvasRatio = cw / ch;
 
@@ -85,8 +92,7 @@ export const CinematicSequence = forwardRef<CinematicSequenceHandle, CinematicSe
       const lowerImg = resolveNearestLoaded(lowerIndex);
       const upperImg = imagesRef.current[upperIndex] ?? lowerImg;
 
-      const dpr = dprRef.current;
-      ctx.clearRect(0, 0, sizeRef.current.width * dpr, sizeRef.current.height * dpr);
+      ctx.clearRect(0, 0, bufferRef.current.width, bufferRef.current.height);
 
       if (lowerImg) drawImageCover(lowerImg, 1);
       if (upperImg && upperImg !== lowerImg && blend > 0) {
@@ -103,11 +109,21 @@ export const CinematicSequence = forwardRef<CinematicSequenceHandle, CinematicSe
 
       const resize = () => {
         const dpr = Math.min(window.devicePixelRatio || 1, 2);
-        dprRef.current = dpr;
         const { clientWidth, clientHeight } = canvas;
-        sizeRef.current = { width: clientWidth, height: clientHeight };
-        canvas.width = Math.round(clientWidth * dpr);
-        canvas.height = Math.round(clientHeight * dpr);
+        if (clientWidth === 0 || clientHeight === 0) return;
+
+        const rawWidth = clientWidth * dpr;
+        const rawHeight = clientHeight * dpr;
+        // Scale the whole buffer down proportionally if it would exceed
+        // the cap — never scale up past the CSS size.
+        const scale = Math.min(1, MAX_RENDER_WIDTH / rawWidth);
+
+        const bufferWidth = Math.round(rawWidth * scale);
+        const bufferHeight = Math.round(rawHeight * scale);
+
+        bufferRef.current = { width: bufferWidth, height: bufferHeight };
+        canvas.width = bufferWidth;
+        canvas.height = bufferHeight;
         drawFrame(pendingProgressRef.current);
       };
 
