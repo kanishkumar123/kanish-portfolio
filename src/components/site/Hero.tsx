@@ -132,7 +132,14 @@ export function Hero() {
 
         {/* Film grain & Vignette */}
         <div className="pointer-events-none absolute inset-0 hero-grain opacity-[0.05] mix-blend-overlay" />
-        <div className="pointer-events-none absolute inset-0 [box-shadow:inset_0_0_20vw_8vw_rgba(0,0,0,0.6)]" />
+
+        <div
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(ellipse at center, transparent 45%, rgba(0,0,0,0.55) 100%)",
+          }}
+        />
 
         {/* Subtitles — lowered slightly, and all three lines share one
             fixed-size, identically-centered box so "Let's build..." sits

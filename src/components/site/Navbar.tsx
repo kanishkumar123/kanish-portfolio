@@ -6,10 +6,10 @@ import { easeApple } from "./motion-primitives";
 import { ThemeToggle } from "./ThemeToggle";
 
 const NAV = [
-  { label: "Work", href: "#work" },
   { label: "Services", href: "#services" },
-  { label: "Process", href: "#process" },
+  { label: "Work", href: "#work" },
   { label: "About", href: "#about" },
+  { label: "Contact", href: "#contact" },
 ];
 
 export function Navbar() {
