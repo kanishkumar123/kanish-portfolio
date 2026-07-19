@@ -193,13 +193,13 @@ function CaseStudyModal({ project, onClose }: { project: Project; onClose: () =>
             </div>
             <div className="mt-1 truncate text-lg font-medium">{project.name}</div>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3">
             {project.liveUrl && (
               <a
                 href={project.liveUrl}
                 target="_blank"
                 rel="noreferrer noopener"
-                className="btn-ghost !py-2 !px-4 text-xs"
+                className="btn-primary !py-2.5 !px-5 text-xs shrink-0"
               >
                 Visit site <ExternalLink className="h-3.5 w-3.5" />
               </a>
@@ -207,14 +207,23 @@ function CaseStudyModal({ project, onClose }: { project: Project; onClose: () =>
             <button
               aria-label="Close case study"
               onClick={onClose}
-              className="grid h-10 w-10 place-items-center rounded-full hairline"
+              className="grid h-10 w-10 shrink-0 place-items-center rounded-full text-muted-foreground transition-colors hover:bg-white/5 hover:text-foreground"
             >
               <X className="h-4 w-4" />
             </button>
           </div>
         </div>
 
-        <div className="max-h-[calc(100svh-100px)] overflow-y-auto">
+        {/*
+          data-lenis-prevent tells Lenis (global smooth-scroll) to ignore wheel/touch
+          events originating inside this element, so native overflow-y scroll works
+          instead of the background page scrolling. overscroll-behavior: contain is
+          a native-scroll backup that stops scroll chaining to the page behind it.
+        */}
+        <div
+          data-lenis-prevent
+          className="max-h-[calc(100svh-100px)] overflow-y-auto overscroll-contain"
+        >
           <motion.div
             layoutId={`cover-${project.slug}`}
             className="relative h-[46vh] w-full"
