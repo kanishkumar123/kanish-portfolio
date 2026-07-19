@@ -203,89 +203,89 @@ export const projects: Project[] = [
     impact:
       "Delivered a centralized, lightning-fast hub for the TNPD community, establishing a premium digital footprint that significantly boosted player retention and off-server engagement.",
   },
-  {
-    slug: "pentafox-mobile",
-    name: "Fertis & Fly91 Applications",
-    tagline: "Cross-platform mobile engineering for marketplace and aviation products.",
-    category: "Mobile · SaaS",
-    year: "2024",
-    duration: "6 Months",
-    role: "Mobile Developer",
-    accent: "#3B82F6",
-    image: fly91Img, // Replace with actual image import for Fly91
-    cover:
-      "radial-gradient(120% 80% at 50% 0%, rgba(59,130,246,0.35), transparent 60%), radial-gradient(80% 80% at 50% 100%, rgba(94,234,212,0.22), transparent 60%), linear-gradient(180deg,#0a1428 0%, #0a0a18 100%)",
-    problem:
-      "Pentafox required rapid prototyping for an aviation app (Fly91) and complex frontend architecture for a product marketplace (Fertis).",
-    goal: "Deliver highly responsive, cross-platform mobile experiences that prioritized user engagement and backend synchronization.",
-    solution:
-      "Engineered a React Native POC for Fly91 with Budibase API integration, and drove the Flutter frontend for Fertis, creating a massive custom widget library.",
-    features: [
-      "150+ custom Flutter UI widgets (Fertis)",
-      "Stock management via Budibase APIs (Fly91)",
-      "Real-time state management",
-      "Complex interactive product listings and filters",
-    ],
-    stack: ["Flutter", "React Native", "Budibase", "Firebase"],
-    process: [
-      "UI component breakdown and architecture",
-      "API integration and state mapping",
-      "Performance profiling on lower-end devices",
-      "Iterative UX refinement",
-    ],
-    challenges: [
-      "Maintaining 60fps scrolling performance with complex product grids in Flutter.",
-      "Synchronizing inventory data accurately with external Budibase endpoints.",
-    ],
-    results: [
-      { label: "Custom Widgets", value: "150+" },
-      { label: "Platforms", value: "iOS + Android" },
-      { label: "Engagement", value: "Increased" },
-    ],
-    impact:
-      "The expansive custom widget library directly contributed to higher in-app user engagement for Fertis, while the Fly91 POC successfully validated the technical requirements for aviation stock management.",
-  },
-  {
-    slug: "vmrf-automation",
-    name: "Enterprise Automation & CRM",
-    tagline: "Slashing administrative overhead through Python and React Native.",
-    category: "Internal Tools · Automation",
-    year: "2025",
-    duration: "Ongoing",
-    role: "Full Stack Engineer",
-    accent: "#F43F5E",
-    image: crmImg,
-    cover:
-      "radial-gradient(120% 80% at 10% 90%, rgba(244,63,94,0.28), transparent 60%), radial-gradient(80% 80% at 90% 10%, rgba(94,234,212,0.28), transparent 60%), linear-gradient(180deg,#181008 0%, #0a1a16 100%)",
-    problem:
-      "Administrative staff were bogged down by manual data entry on massive datasets, and the sales team lacked mobile visibility into their CRM pipeline.",
-    goal: "Automate heavy data processing tasks and build a mobile bridge to the existing CRM for the telecalling team.",
-    solution:
-      "Wrote Python scripts for bulk data processing and developed a React Native telecaller application linked directly to the CRM APIs.",
-    features: [
-      "Bulk DOB validation & duplicate detection",
-      "Automated EC number generation",
-      "React Native telecaller interface",
-      "Real-time call logging to CRM",
-      "Mobile lead pipeline visibility",
-    ],
-    stack: ["Python", "React Native", "REST APIs", "Pandas"],
-    process: [
-      "Workflow analysis and bottleneck identification",
-      "Scripting logic for edge cases in 10k+ row datasets",
-      "Mobile UI design for fast-paced telecallers",
-      "Secure API integration testing",
-    ],
-    challenges: [
-      "Processing 10,000+ row datasets efficiently without memory leaks.",
-      "Designing a mobile UI that telecallers could operate entirely with one hand while on calls.",
-    ],
-    results: [
-      { label: "Processing Time", value: "-70%" },
-      { label: "Dataset Size", value: "10k+ rows" },
-      { label: "Data Accuracy", value: "100%" },
-    ],
-    impact:
-      "The Python automation reduced administrative processing time by 70%, while the mobile CRM integration enabled the sales team to log calls and track leads in real-time from anywhere.",
-  },
+  // {
+  //   slug: "pentafox-mobile",
+  //   name: "Fertis & Fly91 Applications",
+  //   tagline: "Cross-platform mobile engineering for marketplace and aviation products.",
+  //   category: "Mobile · SaaS",
+  //   year: "2024",
+  //   duration: "6 Months",
+  //   role: "Mobile Developer",
+  //   accent: "#3B82F6",
+  //   image: fly91Img, // Replace with actual image import for Fly91
+  //   cover:
+  //     "radial-gradient(120% 80% at 50% 0%, rgba(59,130,246,0.35), transparent 60%), radial-gradient(80% 80% at 50% 100%, rgba(94,234,212,0.22), transparent 60%), linear-gradient(180deg,#0a1428 0%, #0a0a18 100%)",
+  //   problem:
+  //     "Pentafox required rapid prototyping for an aviation app (Fly91) and complex frontend architecture for a product marketplace (Fertis).",
+  //   goal: "Deliver highly responsive, cross-platform mobile experiences that prioritized user engagement and backend synchronization.",
+  //   solution:
+  //     "Engineered a React Native POC for Fly91 with Budibase API integration, and drove the Flutter frontend for Fertis, creating a massive custom widget library.",
+  //   features: [
+  //     "150+ custom Flutter UI widgets (Fertis)",
+  //     "Stock management via Budibase APIs (Fly91)",
+  //     "Real-time state management",
+  //     "Complex interactive product listings and filters",
+  //   ],
+  //   stack: ["Flutter", "React Native", "Budibase", "Firebase"],
+  //   process: [
+  //     "UI component breakdown and architecture",
+  //     "API integration and state mapping",
+  //     "Performance profiling on lower-end devices",
+  //     "Iterative UX refinement",
+  //   ],
+  //   challenges: [
+  //     "Maintaining 60fps scrolling performance with complex product grids in Flutter.",
+  //     "Synchronizing inventory data accurately with external Budibase endpoints.",
+  //   ],
+  //   results: [
+  //     { label: "Custom Widgets", value: "150+" },
+  //     { label: "Platforms", value: "iOS + Android" },
+  //     { label: "Engagement", value: "Increased" },
+  //   ],
+  //   impact:
+  //     "The expansive custom widget library directly contributed to higher in-app user engagement for Fertis, while the Fly91 POC successfully validated the technical requirements for aviation stock management.",
+  // },
+  // {
+  //   slug: "vmrf-automation",
+  //   name: "Enterprise Automation & CRM",
+  //   tagline: "Slashing administrative overhead through Python and React Native.",
+  //   category: "Internal Tools · Automation",
+  //   year: "2025",
+  //   duration: "Ongoing",
+  //   role: "Full Stack Engineer",
+  //   accent: "#F43F5E",
+  //   image: crmImg,
+  //   cover:
+  //     "radial-gradient(120% 80% at 10% 90%, rgba(244,63,94,0.28), transparent 60%), radial-gradient(80% 80% at 90% 10%, rgba(94,234,212,0.28), transparent 60%), linear-gradient(180deg,#181008 0%, #0a1a16 100%)",
+  //   problem:
+  //     "Administrative staff were bogged down by manual data entry on massive datasets, and the sales team lacked mobile visibility into their CRM pipeline.",
+  //   goal: "Automate heavy data processing tasks and build a mobile bridge to the existing CRM for the telecalling team.",
+  //   solution:
+  //     "Wrote Python scripts for bulk data processing and developed a React Native telecaller application linked directly to the CRM APIs.",
+  //   features: [
+  //     "Bulk DOB validation & duplicate detection",
+  //     "Automated EC number generation",
+  //     "React Native telecaller interface",
+  //     "Real-time call logging to CRM",
+  //     "Mobile lead pipeline visibility",
+  //   ],
+  //   stack: ["Python", "React Native", "REST APIs", "Pandas"],
+  //   process: [
+  //     "Workflow analysis and bottleneck identification",
+  //     "Scripting logic for edge cases in 10k+ row datasets",
+  //     "Mobile UI design for fast-paced telecallers",
+  //     "Secure API integration testing",
+  //   ],
+  //   challenges: [
+  //     "Processing 10,000+ row datasets efficiently without memory leaks.",
+  //     "Designing a mobile UI that telecallers could operate entirely with one hand while on calls.",
+  //   ],
+  //   results: [
+  //     { label: "Processing Time", value: "-70%" },
+  //     { label: "Dataset Size", value: "10k+ rows" },
+  //     { label: "Data Accuracy", value: "100%" },
+  //   ],
+  //   impact:
+  //     "The Python automation reduced administrative processing time by 70%, while the mobile CRM integration enabled the sales team to log calls and track leads in real-time from anywhere.",
+  // },
 ];
