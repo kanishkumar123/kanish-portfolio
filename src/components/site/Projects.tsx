@@ -37,7 +37,7 @@ export function Projects() {
             </>
           }
           titleClassName="max-w-4xl"
-          description="Four case studies spanning web, mobile, and backend — each one a full build from first commit to production handoff."
+          description="Four case studies spanning web, mobile, and backend each one a full build from first commit to production handoff."
           meta={<span className="chip">4 case studies · 2023 – 2024</span>}
         />
 
